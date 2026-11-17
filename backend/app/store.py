@@ -7,13 +7,18 @@ from __future__ import annotations
 from typing import Any
 
 from app.seed import SEED_ROWS
+from app.seed_extra import REVALIDATION_SEED
 
 
 class Store:
     def __init__(self) -> None:
-        self._tables: dict[str, list[dict[str, Any]]] = {
+        merged: dict[str, list[dict[str, Any]]] = {
             name: [dict(row) for row in rows] for name, rows in SEED_ROWS.items()
         }
+        # 评分卡复验领域：监控数据集、基线版本、处理批次、复验明细
+        for name, rows in REVALIDATION_SEED.items():
+            merged[name] = [dict(row) for row in rows]
+        self._tables: dict[str, list[dict[str, Any]]] = merged
 
     def module_names(self) -> list[str]:
         return sorted(self._tables)
@@ -28,8 +33,13 @@ class Store:
         return None
 
     def overview(self) -> dict[str, object]:
+        # 评分卡复验的内部表（监控数据集/基线/批次/明细）不单独作为业务模块展示，
+        # 其结论已同步到“评分卡”和“数据漂移”两个业务模块。
+        hidden = {"revalidation_datasets", "revalidation_baselines", "revalidation_batches", "revalidation_details"}
         modules: list[dict[str, object]] = []
         for name in self.module_names():
+            if name in hidden:
+                continue
             rows = self.rows(name)
             modules.append({
                 "name": name,

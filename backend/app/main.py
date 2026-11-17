@@ -10,6 +10,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
 from app.routers import ROUTERS
+from app.services.revalidation import RevalidationService
 from app.store import store
 
 app = FastAPI(title="智能运营决策分析平台", version="1.0.0")
@@ -24,6 +25,9 @@ app.add_middleware(
 
 for module in ROUTERS:
     app.include_router(module.router)
+
+# 首次启动：对已接收的监控数据集生成首批“评分卡复验明细数据集”，并按处理批次归档
+RevalidationService().bootstrap_seed()
 
 
 @app.get("/api/health")

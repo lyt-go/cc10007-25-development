@@ -33,3 +33,24 @@ body { margin: 0; background: #f6f8fb; color: #1f2937; }
 .link { border: none; background: none; color: var(--brand); cursor: pointer; padding: 0; }
 .page-foot { display: flex; justify-content: space-between; margin-top: 8px; font-size: 12px; color: var(--muted); }
 .error-text { color: #b42318; }
+.ok-text { color: #067647; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 12px; line-height: 18px; white-space: nowrap; }
+.badge-alert { background: #fef3f2; color: #b42318; border: 1px solid #fda29b; }
+.badge-stable { background: #ecfdf3; color: #067647; border: 1px solid #73e2a3; }
+.badge-warn { background: #fffaeb; color: #b54708; border: 1px solid #fec84b; }
+.badge-info { background: #eff8ff; color: #175cd3; border: 1px solid #84caff; }
+.badge-muted { background: #f2f4f7; color: var(--muted); border: 1px solid var(--border); }
+.detail-panel { background: #fff; border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; margin-bottom: 12px; }
+.detail-panel h3 { margin: 0 0 8px; font-size: 14px; }
+.kv-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px 16px; }
+.kv-item { font-size: 13px; }
+.kv-item .kv-label { display: block; color: var(--muted); font-size: 12px; }
+.drawer-mask { position: fixed; inset: 0; background: rgba(16, 24, 40, 0.45); z-index: 20; }
+.drawer { position: fixed; top: 0; right: 0; width: min(760px, 92vw); height: 100vh; background: #f6f8fb; z-index: 21; padding: 18px 20px; overflow-y: auto; box-shadow: -8px 0 24px rgba(16, 24, 40, 0.18); }
+.drawer-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.drawer-head h3 { margin: 0; font-size: 16px; }
+.nested-table { width: 100%; background: #fff; border-collapse: collapse; margin-top: 6px; }
+.nested-table th, .nested-table td { border: 1px solid var(--border); padding: 6px 8px; font-size: 12px; text-align: left; }
+.section-note { font-size: 12px; color: var(--muted); margin: 4px 0 10px; }
+.btn.small { padding: 3px 8px; font-size: 12px; }
+.btn:disabled { opacity: 0.55; cursor: not-allowed; }
